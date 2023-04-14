@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/app_banner"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/order1button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="32dp"
+        android:width="200dp"
+        android:height="100dp"
+        android:text="@string/Order_1"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/order2button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:height="100dp"
+        android:text="@string/Order_2"
+        android:textSize="34sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintEnd_toEndOf="@+id/order1button"
+        app:layout_constraintStart_toStartOf="@+id/order1button"
+        app:layout_constraintTop_toBottomOf="@+id/order1button" />
+
+    <Button
+        android:id="@+id/order3button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:height="100dp"
+        android:text="@string/Order_3"
+        android:textSize="34sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintEnd_toEndOf="@+id/order2button"
+        app:layout_constraintStart_toStartOf="@+id/order2button"
+        app:layout_constraintTop_toBottomOf="@+id/order2button" />
+
+
+    <Button
+        android:id="@+id/tray1button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="200dp"
+        android:height="100dp"
+        android:text="@string/Tray_1"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:backgroundTint="#526DFF"
+        app:layout_constraintStart_toEndOf="@+id/order1button"
+        app:layout_constraintTop_toTopOf="@+id/order1button" />
+
+    <Button
+        android:id="@+id/tray2button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:height="100dp"
+        android:text="@string/Tray_2"
+        android:textSize="34sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintEnd_toEndOf="@+id/tray1button"
+        app:layout_constraintStart_toStartOf="@+id/tray1button"
+        app:layout_constraintTop_toBottomOf="@+id/tray1button" />
+
+    <Button
+        android:id="@+id/tray3button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:height="100dp"
+        android:text="@string/Tray_3"
+        android:textSize="34sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintEnd_toEndOf="@+id/tray2button"
+        app:layout_constraintStart_toStartOf="@+id/tray2button"
+        app:layout_constraintTop_toBottomOf="@+id/tray2button"
+        tools:ignore="VisualLintBounds" />
+
+    <Button
+        android:id="@+id/table1button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_1"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:backgroundTint="#526DFF"
+        app:layout_constraintBottom_toTopOf="@+id/tray2button"
+        app:layout_constraintStart_toEndOf="@+id/tray1button" />
+
+    <Button
+        android:id="@+id/table2button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_2"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table1button"
+        app:layout_constraintTop_toTopOf="@+id/table1button" />
+
+    <Button
+        android:id="@+id/table3button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_3"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table2button"
+        app:layout_constraintTop_toTopOf="@+id/table2button" />
+
+    <Button
+        android:id="@+id/table4button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_4"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table3button"
+        app:layout_constraintTop_toTopOf="@+id/table3button" />
+
+    <Button
+        android:id="@+id/table5button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_5"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:backgroundTint="#526DFF"
+        app:layout_constraintStart_toEndOf="@+id/table4button"
+        app:layout_constraintTop_toTopOf="@+id/table4button"
+        tools:ignore="VisualLintBounds" />
+
+    <Button
+        android:id="@+id/table6button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_6"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:backgroundTint="#526DFF"
+        app:layout_constraintStart_toStartOf="@+id/table1button"
+        app:layout_constraintTop_toBottomOf="@+id/table1button" />
+
+    <Button
+        android:id="@+id/table7button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_7"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table6button"
+        app:layout_constraintTop_toTopOf="@+id/table6button" />
+
+    <Button
+        android:id="@+id/table8button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_8"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table7button"
+        app:layout_constraintTop_toTopOf="@+id/table7button" />
+
+    <Button
+        android:id="@+id/table9button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_9"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table8button"
+        app:layout_constraintTop_toTopOf="@+id/table8button" />
+
+    <Button
+        android:id="@+id/table10button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:width="120dp"
+        android:height="100dp"
+        android:text="@string/Table_10"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintStart_toEndOf="@+id/table9button"
+        app:layout_constraintTop_toTopOf="@+id/table9button"
+        tools:ignore="VisualLintBounds" />
+
+    <Button
+        android:id="@+id/deliverybutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="300dp"
+        android:height="70dp"
+        android:backgroundTint="#00843D"
+        android:text="@string/Start_delivery"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintEnd_toStartOf="@+id/homebasebutton"
+        app:layout_constraintStart_toEndOf="@+id/clearbutton"
+        app:layout_constraintTop_toTopOf="@+id/clearbutton" />
+
+    <Button
+        android:id="@+id/homebasebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="300dp"
+        android:height="70dp"
+        android:text="@string/Go_to_Home_Base"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:backgroundTint="#526DFF"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        app:layout_constraintEnd_toStartOf="@+id/loadingbaybutton"
+        app:layout_constraintStart_toEndOf="@+id/deliverybutton"
+        app:layout_constraintTop_toTopOf="@+id/deliverybutton"
+        tools:ignore="VisualLintOverlap" />
+
+    <Button
+        android:id="@+id/loadingbaybutton"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:width="300dp"
+        android:height="70dp"
+        android:backgroundTint="#526DFF"
+        android:text="@string/Go_to_loading_area"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/homebasebutton" />
+
+    <Button
+        android:id="@+id/clearbutton"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="32dp"
+        android:width="180dp"
+        android:height="70dp"
+        android:backgroundTint="#526DFF"
+        android:text="@string/Clear"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tray3button" />
+
+    <TextView
+        android:id="@+id/textViewOrder1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Order_1_"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/order3button"
+        app:layout_constraintTop_toBottomOf="@+id/order3button" />
+
+    <TextView
+        android:id="@+id/textViewOrder2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/Order_2_"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textViewOrder1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder1" />
+
+    <TextView
+        android:id="@+id/textViewOrder3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/Order_3_"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textViewOrder2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder2" />
+
+    <TextView
+        android:id="@+id/textViewOrder1Tray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewOrder1"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder1"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder1" />
+
+    <TextView
+        android:id="@+id/textViewOrder2Tray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewOrder2"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder2"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder2" />
+
+    <TextView
+        android:id="@+id/textViewOrder3Tray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewOrder3"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder3"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder3" />
+
+    <TextView
+        android:id="@+id/textViewOrder1Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder1Tray"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder1Tray" />
+
+    <TextView
+        android:id="@+id/textViewOrder2Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder2Tray"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder2Tray" />
+
+    <TextView
+        android:id="@+id/textViewOrder3Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder3Tray"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder3Tray" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:focusable="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/butler_anim"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:width="32dp"
+        android:height="32dp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

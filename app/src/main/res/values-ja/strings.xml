@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TemiGO レストラン DEMO</string>
+    <string name="Tray_1">トレー 1</string>
+    <string name="Tray_2">トレー 2</string>
+    <string name="Tray_3">トレー 3</string>
+    <string name="Table_1">テーブル 1</string>
+    <string name="Table_2">テーブル 2</string>
+    <string name="Table_3">テーブル 3</string>
+    <string name="Table_4">テーブル 4</string>
+    <string name="Table_5">テーブル 5</string>
+    <string name="Table_6">テーブル 6</string>
+    <string name="Table_7">テーブル 7</string>
+    <string name="Table_8">テーブル 8</string>
+    <string name="Table_9">テーブル 9</string>
+    <string name="Table_10">テーブル 10</string>
+    <string name="app_banner">TemiGO デリバリー サービス DEMO</string>
+    <string name="Order_1">注文 1</string>
+    <string name="Order_2">注文 2</string>
+    <string name="Order_3">注文 3</string>
+    <string name="Start_delivery">食品配送を開始します</string>
+    <string name="Go_to_Home_Base">ホームベースに戻る</string>
+    <string name="Go_to_loading_area">積み込みエリアに戻ります</string>
+    <string name="Clear">注文 リスト を クリア</string>
+    <string name="Order_1_">注文 1:</string>
+    <string name="Order_2_">注文 2:</string>
+    <string name="Order_3_">注文 3:</string>
+    <string name="kitchen">キッチン</string>
+    <string name="Planned_route">\"予定ルート: \"</string>
+</resources>
