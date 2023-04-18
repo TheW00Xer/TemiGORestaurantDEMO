@@ -16,50 +16,51 @@
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/order1button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:layout_marginTop="32dp"
         android:width="200dp"
         android:height="100dp"
-        android:text="@string/Order_1"
+        android:backgroundTint="#526DFF"
+        android:text="@string/order_1"
         android:textColor="#000000"
         android:textSize="34sp"
-        android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/order2button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:text="@string/Order_2"
-        android:textSize="34sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/order_2"
+        android:textColor="#000000"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/order1button"
         app:layout_constraintStart_toStartOf="@+id/order1button"
         app:layout_constraintTop_toBottomOf="@+id/order1button" />
 
     <Button
         android:id="@+id/order3button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:text="@string/Order_3"
-        android:textSize="34sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/order_3"
+        android:textColor="#000000"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/order2button"
         app:layout_constraintStart_toStartOf="@+id/order2button"
         app:layout_constraintTop_toBottomOf="@+id/order2button" />
@@ -73,39 +74,41 @@
         android:layout_marginStart="100dp"
         android:width="200dp"
         android:height="100dp"
-        android:text="@string/Tray_1"
+        android:backgroundTint="#526DFF"
+        android:text="@string/tray_1"
         android:textColor="#000000"
         android:textSize="34sp"
-        android:backgroundTint="#526DFF"
         app:layout_constraintStart_toEndOf="@+id/order1button"
-        app:layout_constraintTop_toTopOf="@+id/order1button" />
+        app:layout_constraintTop_toTopOf="@+id/order1button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/tray2button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:text="@string/Tray_2"
-        android:textSize="34sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/tray_2"
+        android:textColor="#000000"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/tray1button"
         app:layout_constraintStart_toStartOf="@+id/tray1button"
-        app:layout_constraintTop_toBottomOf="@+id/tray1button" />
+        app:layout_constraintTop_toBottomOf="@+id/tray1button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/tray3button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:text="@string/Tray_3"
-        android:textSize="34sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/tray_3"
+        android:textColor="#000000"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/tray2button"
         app:layout_constraintStart_toStartOf="@+id/tray2button"
         app:layout_constraintTop_toBottomOf="@+id/tray2button"
@@ -119,57 +122,61 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_1"
+        android:backgroundTint="#526DFF"
+        android:text="@string/table_1"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:backgroundTint="#526DFF"
         app:layout_constraintBottom_toTopOf="@+id/tray2button"
-        app:layout_constraintStart_toEndOf="@+id/tray1button" />
+        app:layout_constraintStart_toEndOf="@+id/tray1button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table2button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_2"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_2"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table1button"
-        app:layout_constraintTop_toTopOf="@+id/table1button" />
+        app:layout_constraintTop_toTopOf="@+id/table1button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table3button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_3"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_3"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table2button"
-        app:layout_constraintTop_toTopOf="@+id/table2button" />
+        app:layout_constraintTop_toTopOf="@+id/table2button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table4button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_4"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_4"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table3button"
-        app:layout_constraintTop_toTopOf="@+id/table3button" />
+        app:layout_constraintTop_toTopOf="@+id/table3button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table5button"
@@ -179,10 +186,10 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_5"
+        android:backgroundTint="#526DFF"
+        android:text="@string/table_5"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:backgroundTint="#526DFF"
         app:layout_constraintStart_toEndOf="@+id/table4button"
         app:layout_constraintTop_toTopOf="@+id/table4button"
         tools:ignore="VisualLintBounds" />
@@ -195,104 +202,109 @@
         android:layout_marginTop="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_6"
+        android:backgroundTint="#526DFF"
+        android:text="@string/table_6"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:backgroundTint="#526DFF"
         app:layout_constraintStart_toStartOf="@+id/table1button"
-        app:layout_constraintTop_toBottomOf="@+id/table1button" />
+        app:layout_constraintTop_toBottomOf="@+id/table1button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table7button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_7"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_7"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table6button"
-        app:layout_constraintTop_toTopOf="@+id/table6button" />
+        app:layout_constraintTop_toTopOf="@+id/table6button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table8button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_8"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_8"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table7button"
-        app:layout_constraintTop_toTopOf="@+id/table7button" />
+        app:layout_constraintTop_toTopOf="@+id/table7button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table9button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_9"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_9"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table8button"
-        app:layout_constraintTop_toTopOf="@+id/table8button" />
+        app:layout_constraintTop_toTopOf="@+id/table8button"
+        tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/table10button"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:text="@string/Table_10"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/table_10"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/table9button"
         app:layout_constraintTop_toTopOf="@+id/table9button"
         tools:ignore="VisualLintBounds" />
 
     <Button
         android:id="@+id/deliverybutton"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="300dp"
         android:height="70dp"
         android:backgroundTint="#00843D"
-        android:text="@string/Start_delivery"
+        android:text="@string/start_delivery"
         android:textColor="#000000"
         android:textSize="24sp"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
         app:layout_constraintEnd_toStartOf="@+id/homebasebutton"
         app:layout_constraintStart_toEndOf="@+id/clearbutton"
-        app:layout_constraintTop_toTopOf="@+id/clearbutton" />
+        app:layout_constraintTop_toTopOf="@+id/clearbutton"
+        tools:ignore="VisualLintOverlap" />
 
     <Button
         android:id="@+id/homebasebutton"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="300dp"
         android:height="70dp"
-        android:text="@string/Go_to_Home_Base"
-        android:textSize="24sp"
-        android:textColor="#000000"
         android:backgroundTint="#526DFF"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="@string/go_to_Home_Base"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/loadingbaybutton"
         app:layout_constraintStart_toEndOf="@+id/deliverybutton"
         app:layout_constraintTop_toTopOf="@+id/deliverybutton"
-        tools:ignore="VisualLintOverlap" />
+        tools:ignore="VisualLintOverlap,VisualLintBounds" />
 
     <Button
         android:id="@+id/loadingbaybutton"
@@ -303,11 +315,12 @@
         android:width="300dp"
         android:height="70dp"
         android:backgroundTint="#526DFF"
-        android:text="@string/Go_to_loading_area"
+        android:text="@string/go_to_loading_area"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/homebasebutton" />
+        app:layout_constraintTop_toTopOf="@+id/homebasebutton"
+        tools:ignore="VisualLintOverlap" />
 
     <Button
         android:id="@+id/clearbutton"
@@ -319,19 +332,20 @@
         android:width="180dp"
         android:height="70dp"
         android:backgroundTint="#526DFF"
-        android:text="@string/Clear"
+        android:text="@string/clear"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tray3button" />
+        app:layout_constraintStart_toStartOf="@+id/tray3button"
+        tools:ignore="VisualLintBounds" />
 
     <TextView
         android:id="@+id/textViewOrder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/Order_1_"
+        android:text="@string/order_1_sum"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -343,7 +357,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/Order_2_"
+        android:text="@string/order_2_sum"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -355,12 +369,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/Order_3_"
+        android:text="@string/order_3_sum"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textViewOrder2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOrder2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder2"
+        tools:ignore="VisualLintBounds" />
 
     <TextView
         android:id="@+id/textViewOrder1Tray"
@@ -390,7 +405,8 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewOrder3"
         app:layout_constraintStart_toEndOf="@+id/textViewOrder3"
-        app:layout_constraintTop_toTopOf="@+id/textViewOrder3" />
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder3"
+        tools:ignore="VisualLintBounds" />
 
     <TextView
         android:id="@+id/textViewOrder1Location"
@@ -417,32 +433,23 @@
         android:layout_marginStart="16dp"
         android:textSize="34sp"
         app:layout_constraintStart_toEndOf="@+id/textViewOrder3Tray"
-        app:layout_constraintTop_toTopOf="@+id/textViewOrder3Tray" />
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder3Tray"
+        tools:ignore="VisualLintBounds" />
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:focusable="false"
-        android:scaleType="centerCrop"
-        android:src="@drawable/butler_anim"
-        android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
+    <ImageButton
         android:id="@+id/exitButton"
+        style="@style/AppTheme.RoundedCornerMaterialButton2"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:width="32dp"
-        android:height="32dp"
-        android:background="@android:color/transparent"
-        android:elevation="2dp"
-        android:importantForAccessibility="no"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:width="48dp"
+        android:height="48dp"
+        android:backgroundTint="#FF0000"
+        android:contentDescription="@string/exit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
