@@ -3,24 +3,31 @@ package com.thew00xer.temigorestaurantdemoapp
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.robotemi.sdk.Robot
 import com.robotemi.sdk.TtsRequest
 import com.robotemi.sdk.listeners.OnGoToLocationStatusChangedListener
 import com.robotemi.sdk.listeners.OnRobotReadyListener
 import com.robotemi.sdk.listeners.OnSerialRawDataListener
+import com.robotemi.sdk.permission.Permission
+import com.robotemi.sdk.permission.Permission.Companion.GRANTED
 import com.robotemi.sdk.serial.Serial
 import com.robotemi.sdk.serial.Serial.cmd
 import com.robotemi.sdk.serial.Serial.dataFrame
 import com.robotemi.sdk.serial.Serial.dataHex
 import com.robotemi.sdk.serial.Serial.getLcdBytes
 import com.robotemi.sdk.serial.Serial.weight
+import java.time.LocalTime
+import java.time.temporal.ChronoUnit
 
 
 class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyListener,
@@ -29,6 +36,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
     private var trayStatus = hashMapOf<Int, Boolean>()
 
     private lateinit var robot: Robot
+
+    private val orderList = ArrayList<String>()
+    private val orderListT = ArrayList<String>()
+    private lateinit var customAdapter: CustomAdapter
 
     private lateinit var exitbtn: ImageButton
 
@@ -51,12 +62,26 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
     private lateinit var table9btn: Button
     private lateinit var table10btn: Button
 
-    private lateinit var clrbtn: Button
+    private lateinit var clrbtn1: Button
+    private lateinit var clrbtn2: Button
+    private lateinit var clrbtn3: Button
+    private lateinit var clrhistorybtn: Button
 
     private lateinit var deliverybtn: Button
 
     private lateinit var homebasebtn: Button
     private lateinit var loadingbaybtn: Button
+
+    private lateinit var testbtn: Button
+
+    private lateinit var batteryImage: ImageView
+    private lateinit var batteryLevel: ProgressBar
+    private lateinit var batteryCharging: ImageView
+    private lateinit var batteryPercentage: TextView
+
+    private lateinit var orderHistory: RecyclerView
+
+    private lateinit var clockView: TextView
 
     private lateinit var order1: TextView
     private lateinit var order2: TextView
@@ -71,15 +96,38 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
     private lateinit var order3location: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Initialize Robot instance
         robot = Robot.getInstance()
-        robot.addOnSerialRawDataListener(this)
+
+        requestMap()
+        requestSettings()
 
         // Initialize UI
         initInterface()
+
+        super.onCreate(savedInstanceState)
+    }
+
+    private fun requestMap() {
+        if (robot.checkSelfPermission(Permission.MAP) == Permission.GRANTED) {
+            Toast.makeText(this, "You already have MAP permission.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val permissions: MutableList<Permission> = ArrayList()
+        permissions.add(Permission.MAP)
+        robot.requestPermissions(permissions, GRANTED)
+    }
+
+    private fun requestSettings() {
+        if (robot.checkSelfPermission(Permission.SETTINGS) == Permission.GRANTED) {
+            Toast.makeText(this, "You already have SETTINGS permission.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val permissions: MutableList<Permission> = ArrayList()
+        permissions.add(Permission.SETTINGS)
+        robot.requestPermissions(permissions, GRANTED)
     }
 
     private fun initInterface() {
@@ -104,7 +152,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
         table9btn = findViewById(R.id.table9button)
         table10btn = findViewById(R.id.table10button)
 
-        clrbtn = findViewById(R.id.clearbutton)
+        clrbtn1 = findViewById(R.id.clearbutton1)
+        clrbtn2 = findViewById(R.id.clearbutton2)
+        clrbtn3 = findViewById(R.id.clearbutton3)
+        clrhistorybtn = findViewById(R.id.clearHistoryButton)
 
         deliverybtn = findViewById(R.id.deliverybutton)
         homebasebtn = findViewById(R.id.homebasebutton)
@@ -113,7 +164,55 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
         // Exit Button
         exitbtn = findViewById(R.id.exitButton)
 
+        // Test Button
+        testbtn = findViewById(R.id.buttonTest)
+
+        orderHistory = findViewById(R.id.recyclerViewHistory)
+        customAdapter = CustomAdapter(orderList, orderListT)
+        val layoutManager = LinearLayoutManager(applicationContext)
+        orderHistory.layoutManager = layoutManager
+        orderHistory.adapter = customAdapter
+
+        // Displaying battery charging status and level graphically and with numerical value
+        batteryImage = findViewById(R.id.imageBattery)
+        batteryLevel = findViewById(R.id.progressBarBatteryLevel)
+        batteryCharging = findViewById(R.id.imageBatteryCharging)
+        batteryPercentage = findViewById(R.id.textBatteryLevel)
+        val batteryHandler = Handler(Looper.getMainLooper())
+        batteryHandler.post(object : Runnable {
+            override fun run() {
+                val batteryData = robot.batteryData ?: return
+                if (batteryData.isCharging) {
+                    batteryCharging.isVisible = true
+                } else {
+                    batteryCharging.isVisible = false
+                }
+                if (batteryData.level <= 15) {
+                    DrawableCompat.setTint(batteryLevel.progressDrawable, Color.RED)
+                } else {
+                    DrawableCompat.setTint(batteryLevel.progressDrawable, Color.parseColor("#46DE00"))
+                }
+                batteryLevel.progress = batteryData.level
+                batteryPercentage.text = buildString {
+                    append(batteryData.level)
+                    append("%")
+                }
+                batteryHandler.postDelayed(this, 1000)
+            }
+        })
+
         //Text Views
+        clockView = findViewById(R.id.textViewClock)
+        // "val mainHandler" and "fun run" to display time that is continuously updating.
+        val timeHandler = Handler(Looper.getMainLooper())
+        timeHandler.post(object : Runnable {
+            override fun run() {
+                clockView.text = LocalTime.now().truncatedTo(ChronoUnit.MINUTES)
+                    .toString() // To display current time as timestamp
+                timeHandler.postDelayed(this, 1000)
+            }
+        })
+
         order1 = findViewById(R.id.textViewOrder1)
         order2 = findViewById(R.id.textViewOrder2)
         order3 = findViewById(R.id.textViewOrder3)
@@ -156,7 +255,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             } else if (order3tray.text.isEmpty() && order3.currentTextColor == Color.parseColor("#00843D")) {
                 order3tray.text = getString(R.string.tray_1)
             }
-            if (order1tray.text == getString(R.string.tray_1) || order2tray.text == getString(R.string.tray_1) || order3tray.text == getString(R.string.tray_1)) {
+            if (order1tray.text == getString(R.string.tray_1) || order2tray.text == getString(R.string.tray_1) || order3tray.text == getString(
+                    R.string.tray_1
+                )
+            ) {
                 tray1btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -171,7 +273,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             } else if (order3tray.text.isEmpty() && order3.currentTextColor == Color.parseColor("#00843D")) {
                 order3tray.text = getString(R.string.tray_2)
             }
-            if (order1tray.text == getString(R.string.tray_2) || order2tray.text == getString(R.string.tray_2) || order3tray.text == getString(R.string.tray_2)) {
+            if (order1tray.text == getString(R.string.tray_2) || order2tray.text == getString(R.string.tray_2) || order3tray.text == getString(
+                    R.string.tray_2
+                )
+            ) {
                 tray2btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -186,7 +291,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             } else if (order3tray.text.isEmpty() && order3.currentTextColor == Color.parseColor("#00843D")) {
                 order3tray.text = getString(R.string.tray_3)
             }
-            if (order1tray.text == getString(R.string.tray_3) || order2tray.text == getString(R.string.tray_3) || order3tray.text == getString(R.string.tray_3)) {
+            if (order1tray.text == getString(R.string.tray_3) || order2tray.text == getString(R.string.tray_3) || order3tray.text == getString(
+                    R.string.tray_3
+                )
+            ) {
                 tray3btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -196,15 +304,26 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
 
         // Selecting which Table should the food go to
         table1btn.setOnClickListener {
-            if (order1tray.text.isNotEmpty() && order1location.text.isEmpty() && order1.currentTextColor == Color.parseColor("#00843D")) {
+            if (order1tray.text.isNotEmpty() && order1location.text.isEmpty() && order1.currentTextColor == Color.parseColor(
+                    "#00843D"
+                )
+            ) {
                 order1location.text = getString(R.string.table_1)
-            } else if (order2tray.text.isNotEmpty() && order2location.text.isEmpty() && order2.currentTextColor == Color.parseColor("#00843D")
+            } else if (order2tray.text.isNotEmpty() && order2location.text.isEmpty() && order2.currentTextColor == Color.parseColor(
+                    "#00843D"
+                )
             ) {
                 order2location.text = getString(R.string.table_1)
-            } else if (order3tray.text.isNotEmpty() && order3location.text.isEmpty() && order3.currentTextColor == Color.parseColor("#00843D")) {
+            } else if (order3tray.text.isNotEmpty() && order3location.text.isEmpty() && order3.currentTextColor == Color.parseColor(
+                    "#00843D"
+                )
+            ) {
                 order3location.text = getString(R.string.table_1)
             }
-            if (order1location.text == getString(R.string.table_1) || order2location.text == getString(R.string.table_1) || order3location.text == getString(R.string.table_1)) {
+            if (order1location.text == getString(R.string.table_1) || order2location.text == getString(
+                    R.string.table_1
+                ) || order3location.text == getString(R.string.table_1)
+            ) {
                 table1btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -228,7 +347,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_2)
             }
-            if (order1location.text == getString(R.string.table_2) || order2location.text == getString(R.string.table_2) || order3location.text == getString(R.string.table_2)) {
+            if (order1location.text == getString(R.string.table_2) || order2location.text == getString(
+                    R.string.table_2
+                ) || order3location.text == getString(R.string.table_2)
+            ) {
                 table2btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -252,7 +374,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_3)
             }
-            if (order1location.text == getString(R.string.table_3) || order2location.text == getString(R.string.table_3) || order3location.text == getString(R.string.table_3)) {
+            if (order1location.text == getString(R.string.table_3) || order2location.text == getString(
+                    R.string.table_3
+                ) || order3location.text == getString(R.string.table_3)
+            ) {
                 table3btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -276,7 +401,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_4)
             }
-            if (order1location.text == getString(R.string.table_4) || order2location.text == getString(R.string.table_4) || order3location.text == getString(R.string.table_4)) {
+            if (order1location.text == getString(R.string.table_4) || order2location.text == getString(
+                    R.string.table_4
+                ) || order3location.text == getString(R.string.table_4)
+            ) {
                 table4btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -300,7 +428,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_5)
             }
-            if (order1location.text == getString(R.string.table_5) || order2location.text == getString(R.string.table_5) || order3location.text == getString(R.string.table_5)) {
+            if (order1location.text == getString(R.string.table_5) || order2location.text == getString(
+                    R.string.table_5
+                ) || order3location.text == getString(R.string.table_5)
+            ) {
                 table5btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -324,7 +455,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_6)
             }
-            if (order1location.text == getString(R.string.table_6) || order2location.text == getString(R.string.table_6) || order3location.text == getString(R.string.table_6)) {
+            if (order1location.text == getString(R.string.table_6) || order2location.text == getString(
+                    R.string.table_6
+                ) || order3location.text == getString(R.string.table_6)
+            ) {
                 table6btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -348,7 +482,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_7)
             }
-            if (order1location.text == getString(R.string.table_7) || order2location.text == getString(R.string.table_7) || order3location.text == getString(R.string.table_7)) {
+            if (order1location.text == getString(R.string.table_7) || order2location.text == getString(
+                    R.string.table_7
+                ) || order3location.text == getString(R.string.table_7)
+            ) {
                 table7btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -372,7 +509,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_8)
             }
-            if (order1location.text == getString(R.string.table_8) || order2location.text == getString(R.string.table_8) || order3location.text == getString(R.string.table_8)) {
+            if (order1location.text == getString(R.string.table_8) || order2location.text == getString(
+                    R.string.table_8
+                ) || order3location.text == getString(R.string.table_8)
+            ) {
                 table8btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -396,7 +536,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_9)
             }
-            if (order1location.text == getString(R.string.table_9) || order2location.text == getString(R.string.table_9) || order3location.text == getString(R.string.table_9)) {
+            if (order1location.text == getString(R.string.table_9) || order2location.text == getString(
+                    R.string.table_9
+                ) || order3location.text == getString(R.string.table_9)
+            ) {
                 table9btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -420,7 +563,10 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             ) {
                 order3location.text = getString(R.string.table_10)
             }
-            if (order1location.text == getString(R.string.table_10) || order2location.text == getString(R.string.table_10) || order3location.text == getString(R.string.table_10)) {
+            if (order1location.text == getString(R.string.table_10) || order2location.text == getString(
+                    R.string.table_10
+                ) || order3location.text == getString(R.string.table_10)
+            ) {
                 table10btn.apply {
                     isClickable = false
                     background.setTint(Color.parseColor("#BBBCBC"))
@@ -429,85 +575,324 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
         }
 
         // Clear orders and reset buttons
-        clrbtn.setOnClickListener {
+        clrbtn1.setOnClickListener {
+            when (order1tray.text) {
+                getString(R.string.tray_1) -> {
+                    tray1btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.tray_2) -> {
+                    tray2btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.tray_3) -> {
+                    tray3btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+            }
+            when (order1location.text) {
+                getString(R.string.table_1) -> {
+                    table1btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_2) -> {
+                    table2btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_3) -> {
+                    table3btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_4) -> {
+                    table4btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_5) -> {
+                    table5btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_6) -> {
+                    table6btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_7) -> {
+                    table7btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_8) -> {
+                    table8btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_9) -> {
+                    table9btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_10) -> {
+                    table10btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+            }
             order1.setTextColor(Color.parseColor("#000000"))
-            order2.setTextColor(Color.parseColor("#000000"))
-            order3.setTextColor(Color.parseColor("#000000"))
-
             order1tray.text = ""
-            order2tray.text = ""
-            order3tray.text = ""
-
             order1location.text = ""
-            order2location.text = ""
-            order3location.text = ""
-
             order1btn.apply {
                 isClickable = true
                 background.setTint(Color.parseColor("#526DFF"))
             }
+        }
+        clrbtn2.setOnClickListener {
+            when (order2tray.text) {
+                getString(R.string.tray_1) -> {
+                    tray1btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.tray_2) -> {
+                    tray2btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.tray_3) -> {
+                    tray3btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+            }
+            when (order2location.text) {
+                getString(R.string.table_1) -> {
+                    table1btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_2) -> {
+                    table2btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_3) -> {
+                    table3btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_4) -> {
+                    table4btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_5) -> {
+                    table5btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_6) -> {
+                    table6btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_7) -> {
+                    table7btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_8) -> {
+                    table8btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_9) -> {
+                    table9btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_10) -> {
+                    table10btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+            }
+            order2.setTextColor(Color.parseColor("#000000"))
+            order2tray.text = ""
+            order2location.text = ""
             order2btn.apply {
                 isClickable = true
                 background.setTint(Color.parseColor("#526DFF"))
             }
+        }
+        clrbtn3.setOnClickListener {
+            when (order3tray.text) {
+                getString(R.string.tray_1) -> {
+                    tray1btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.tray_2) -> {
+                    tray2btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.tray_3) -> {
+                    tray3btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+            }
+            when (order3location.text) {
+                getString(R.string.table_1) -> {
+                    table1btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_2) -> {
+                    table2btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_3) -> {
+                    table3btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_4) -> {
+                    table4btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_5) -> {
+                    table5btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_6) -> {
+                    table6btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_7) -> {
+                    table7btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_8) -> {
+                    table8btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_9) -> {
+                    table9btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+                getString(R.string.table_10) -> {
+                    table10btn.apply {
+                        isClickable = true
+                        background.setTint(Color.parseColor("#526DFF"))
+                    }
+                }
+            }
+            order3.setTextColor(Color.parseColor("#000000"))
+            order3tray.text = ""
+            order3location.text = ""
             order3btn.apply {
                 isClickable = true
                 background.setTint(Color.parseColor("#526DFF"))
             }
+        }
 
-            tray1btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
+        clrhistorybtn.setOnClickListener {
+            val builderHist: AlertDialog.Builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            builderHist.setMessage("Are you sure you want to clear order History?")
+                .setTitle("Clear order History")
+                .setCancelable(false)
+                .setPositiveButton(
+                    getString(R.string.yes)
+                    // Order history will be deleted.
+                ) { _, _ ->
+                    orderList.clear()
+                    orderListT.clear()
+                    customAdapter = CustomAdapter(orderList, orderListT)
+                    val recyclerLayoutManager = LinearLayoutManager(applicationContext)
+                    orderHistory.layoutManager = recyclerLayoutManager
+                    orderHistory.adapter = customAdapter
+                    Toast.makeText(this, "Order history was deleted.", Toast.LENGTH_SHORT).show() }
+                .setNegativeButton(
+                    getString(R.string.no)
+                ) { dialog, _ -> dialog.cancel() }
+            val alert: AlertDialog = builderHist.create()
+            alert.show()
+        }
+
+        testbtn.setOnClickListener {
+            val locationList = arrayListOf<String>()
+            if (order1location.text.isNotEmpty()) {
+                orderList.add(order1location.text.toString().lowercase().trim { it <= ' ' })
+                orderListT.add(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString())
             }
-            tray2btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
+            if (order2location.text.isNotEmpty()) {
+                orderList.add(order2location.text.toString().lowercase().trim { it <= ' ' })
+                orderListT.add(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString())
             }
-            tray3btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
+            if (order3location.text.isNotEmpty()) {
+                orderList.add(order3location.text.toString().lowercase().trim { it <= ' ' })
+                orderListT.add(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString())
             }
 
-            table1btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table2btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table3btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table4btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table5btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table6btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table7btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table8btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table9btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
-            table10btn.apply {
-                isClickable = true
-                background.setTint(Color.parseColor("#526DFF"))
-            }
+            customAdapter = CustomAdapter(orderList, orderListT)
+            val recyclerLayoutManager = LinearLayoutManager(applicationContext)
+            orderHistory.layoutManager = recyclerLayoutManager
+            orderHistory.adapter = customAdapter
+
+            locationList.add(getString(R.string.kitchen))
         }
 
         // Start delivery
@@ -515,12 +900,18 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             val locationList = arrayListOf<String>()
             if (order1location.text.isNotEmpty()) {
                 locationList.add(order1location.text.toString().lowercase().trim { it <= ' ' })
+                orderList.add(order1location.text.toString().lowercase().trim { it <= ' ' })
+                orderListT.add(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString())
             }
             if (order2location.text.isNotEmpty()) {
                 locationList.add(order2location.text.toString().lowercase().trim { it <= ' ' })
+                orderList.add(order2location.text.toString().lowercase().trim { it <= ' ' })
+                orderListT.add(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString())
             }
             if (order3location.text.isNotEmpty()) {
                 locationList.add(order3location.text.toString().lowercase().trim { it <= ' ' })
+                orderList.add(order3location.text.toString().lowercase().trim { it <= ' ' })
+                orderListT.add(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString())
             }
             /**
             for (location in robot.locations) {
@@ -553,27 +944,36 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
             )
             }
             } */
+
+            customAdapter = CustomAdapter(orderList, orderListT)
+            orderHistory.adapter = customAdapter
+
             locationList.add(getString(R.string.kitchen))
+
             robot.patrol(locationList, false, 1, 10)
             // robot.goTo(locationList[0].lowercase().trim { it <= ' ' }, backwards = false, noBypass = false, speedLevel = robot.goToSpeed)
             Toast.makeText(this, buildString {
                 append(getString(R.string.planned_route))
-                append(locationList) }, Toast.LENGTH_SHORT).show()
+                append(locationList)
+            }, Toast.LENGTH_SHORT).show()
         }
 
         // Exit button
         exitbtn.setOnClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
-            builder.setMessage(getString(R.string.exit_app_message))
+            val builderExit: AlertDialog.Builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            builderExit.setMessage(getString(R.string.exit_app_message))
                 .setTitle(getString(R.string.exit_app_title))
                 .setCancelable(false)
-                .setPositiveButton(getString(R.string.yes)
+                .setPositiveButton(
+                    getString(R.string.yes)
                     // Activity will be moved to the background and Temi menu with app tiles will be displayed.
-                ) { _, _ -> robot.showAppList()}
+                ) { _, _ -> robot.showAppList() }
+                // Activity will be closed
                 //) { _, _ -> this@MainActivity.finish() }
-                .setNegativeButton(getString(R.string.no)
+                .setNegativeButton(
+                    getString(R.string.no)
                 ) { dialog, _ -> dialog.cancel() }
-            val alert: AlertDialog = builder.create()
+            val alert: AlertDialog = builderExit.create()
             alert.show()
         }
 
@@ -595,6 +995,7 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
         super.onStart()
         robot.addOnRobotReadyListener(this)
         robot.addOnGoToLocationStatusChangedListener(this)
+        robot.addOnSerialRawDataListener(this)
         //robot.addTtsListener(this)
         //robot.addOnDistanceToLocationChangedListener(this)
         //robot.addOnCurrentPositionChangedListener(this)
@@ -627,6 +1028,14 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
         //robot.removeOnDistanceToDestinationChangedListener(this)
         //robot.removeOnRobotDragStateChangedListener(this)
 
+    }
+
+    override fun onPause() {
+        customAdapter = CustomAdapter(orderList, orderListT)
+        val layoutManager = LinearLayoutManager(applicationContext)
+        orderHistory.layoutManager = layoutManager
+        orderHistory.adapter = customAdapter
+        super.onPause()
     }
 
     override fun onDestroy() {
@@ -732,12 +1141,21 @@ class MainActivity : AppCompatActivity(), OnSerialRawDataListener, OnRobotReadyL
         }
     }
 
-    override fun onGoToLocationStatusChanged(location: String, status: String, descriptionId: Int, description: String) {
+    override fun onGoToLocationStatusChanged(
+        location: String,
+        status: String,
+        descriptionId: Int,
+        description: String
+    ) {
         // Showing animation if robot is moving around the map
-        if (location != getString(R.string.kitchen) && location != "home base" && status == "going" || status == "complete" || location == getString(R.string.kitchen) && status == "going") {
+        if (location != getString(R.string.kitchen) && location != "home base" && status == "going" || status == "complete" || location == getString(
+                R.string.kitchen
+            ) && status == "going"
+        ) {
             this.setContentView(R.layout.in_delivery)
             // Declaring hidden Exit button and setting onLongClick listener so staff can exit delivery screen in case there is an issue.
             this.findViewById<Button>(R.id.exitDeliveryButton).setOnLongClickListener {
+                robot.stopMovement()
                 Toast.makeText(this, "Exit button pushed", Toast.LENGTH_SHORT).show()
                 this@MainActivity.setContentView(R.layout.activity_main)
                 initInterface()

@@ -15,9 +15,21 @@
         android:text="@string/app_banner"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageBattery"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="VisualLintBounds" />
+
+    <TextView
+        android:id="@+id/textViewClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="CLOCK"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/order1button"
@@ -279,15 +291,16 @@
         style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:width="300dp"
         android:height="70dp"
         android:backgroundTint="#00843D"
         android:text="@string/start_delivery"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/homebasebutton"
-        app:layout_constraintStart_toEndOf="@+id/clearbutton"
-        app:layout_constraintTop_toTopOf="@+id/clearbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/table8button"
+        app:layout_constraintStart_toStartOf="@+id/table6button"
         tools:ignore="VisualLintOverlap" />
 
     <Button
@@ -295,15 +308,16 @@
         style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
         android:width="300dp"
         android:height="70dp"
         android:backgroundTint="#526DFF"
         android:text="@string/go_to_Home_Base"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/loadingbaybutton"
-        app:layout_constraintStart_toEndOf="@+id/deliverybutton"
-        app:layout_constraintTop_toTopOf="@+id/deliverybutton"
+        app:layout_constraintBottom_toTopOf="@+id/deliverybutton"
+        app:layout_constraintEnd_toEndOf="@+id/deliverybutton"
+        app:layout_constraintStart_toStartOf="@+id/deliverybutton"
         tools:ignore="VisualLintOverlap,VisualLintBounds" />
 
     <Button
@@ -311,33 +325,67 @@
         style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="70dp"
         android:width="300dp"
         android:height="70dp"
         android:backgroundTint="#526DFF"
         android:text="@string/go_to_loading_area"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/homebasebutton"
+        app:layout_constraintBottom_toTopOf="@+id/homebasebutton"
+        app:layout_constraintEnd_toEndOf="@+id/homebasebutton"
+        app:layout_constraintStart_toStartOf="@+id/homebasebutton"
         tools:ignore="VisualLintOverlap" />
 
     <Button
-        android:id="@+id/clearbutton"
+        android:id="@+id/clearbutton1"
         style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="32dp"
         android:width="180dp"
         android:height="70dp"
-        android:backgroundTint="#526DFF"
-        android:text="@string/clear"
+        android:backgroundTint="#F44336"
+        android:text=" Clear order 1 "
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tray3button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder1"
+        tools:ignore="VisualLintBounds" />
+
+    <Button
+        android:id="@+id/clearbutton2"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:width="180dp"
+        android:height="70dp"
+        android:backgroundTint="#F44336"
+        android:text=" Clear order 2 "
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder2"
+        tools:ignore="VisualLintBounds" />
+
+    <Button
+        android:id="@+id/clearbutton3"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:width="180dp"
+        android:height="70dp"
+        android:backgroundTint="#F44336"
+        android:text=" Clear order 3 "
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewOrder3"
         tools:ignore="VisualLintBounds" />
 
     <TextView
@@ -349,7 +397,7 @@
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/order3button"
+        app:layout_constraintStart_toEndOf="@+id/order3button"
         app:layout_constraintTop_toBottomOf="@+id/order3button" />
 
     <TextView
@@ -447,9 +495,124 @@
         android:height="48dp"
         android:backgroundTint="#FF0000"
         android:contentDescription="@string/exit_button"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:adjustViewBounds="true"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
         tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/textViewOrderHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Order History:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHistory"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewHistory" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHistory"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="102dp"
+        android:elevation="1dp"
+        android:outlineAmbientShadowColor="#000000"
+        android:outlineProvider="paddedBounds"
+        android:outlineSpotShadowColor="#000000"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/deliverybutton"
+        app:layout_constraintEnd_toStartOf="@+id/recyclerViewHistory"
+        app:layout_constraintHorizontal_bias="0.918"
+        app:layout_constraintStart_toEndOf="@+id/tray3button"
+        app:layout_constraintTop_toBottomOf="@+id/table7button"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <ProgressBar
+        android:id="@+id/progressBarBatteryLevel"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:progressTint="#46DE00"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBattery"
+        app:layout_constraintEnd_toEndOf="@+id/imageBattery"
+        app:layout_constraintStart_toStartOf="@+id/imageBattery"
+        app:layout_constraintTop_toTopOf="@+id/imageBattery" />
+
+    <ImageView
+        android:id="@+id/imageBattery"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_battery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/empty_battery" />
+
+    <ImageView
+        android:id="@+id/imageBatteryCharging"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bolt_symbol"
+        app:layout_constraintBottom_toBottomOf="@+id/imageBattery"
+        app:layout_constraintStart_toStartOf="@+id/imageBattery"
+        app:layout_constraintTop_toTopOf="@+id/imageBattery"
+        app:srcCompat="@drawable/bolt_symbol" />
+
+    <TextView
+        android:id="@+id/textBatteryLevel"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:text="100%"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageBattery"
+        app:layout_constraintStart_toEndOf="@id/imageBatteryCharging"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/clearHistoryButton"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Clear order History"
+        android:backgroundTint="#F44336"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        tools:ignore="VisualLintBounds"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewHistory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
