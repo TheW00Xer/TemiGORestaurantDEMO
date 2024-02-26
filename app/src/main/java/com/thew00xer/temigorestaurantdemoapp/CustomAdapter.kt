@@ -21,7 +21,11 @@ class CustomAdapter(private var orderList: ArrayList<String>, private var orderL
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = orderList[position]
-        holder.orderNumber.text = ("Order " + (position + 1) + ":")
+        holder.orderNumber.text = (buildString {
+        append("Order ")
+        append((position + 1))
+        append(":")
+    })
         holder.tableNumber.text = item
         holder.timeStamp.text = (orderListT[position])
     }

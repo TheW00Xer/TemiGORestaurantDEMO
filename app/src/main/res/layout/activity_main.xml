@@ -40,7 +40,7 @@
         android:layout_marginTop="32dp"
         android:width="200dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/order_1"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/order_2"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/order_3"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -86,7 +86,7 @@
         android:layout_marginStart="100dp"
         android:width="200dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/tray_1"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/tray_2"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/tray_3"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -134,7 +134,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_1"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -150,7 +150,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_2"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -166,7 +166,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_3"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -182,7 +182,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_4"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -198,7 +198,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_5"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -214,7 +214,7 @@
         android:layout_marginTop="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_6"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -230,7 +230,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_7"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -246,7 +246,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_8"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -262,7 +262,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_9"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -278,7 +278,7 @@
         android:layout_marginStart="100dp"
         android:width="120dp"
         android:height="100dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#B9975B"
         android:text="@string/table_10"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -294,7 +294,7 @@
         android:layout_marginBottom="70dp"
         android:width="300dp"
         android:height="70dp"
-        android:backgroundTint="#00843D"
+        android:backgroundTint="#20D199"
         android:text="@string/start_delivery"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -311,7 +311,7 @@
         android:layout_marginBottom="70dp"
         android:width="300dp"
         android:height="70dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/go_to_Home_Base"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -328,7 +328,7 @@
         android:layout_marginBottom="70dp"
         android:width="300dp"
         android:height="70dp"
-        android:backgroundTint="#526DFF"
+        android:backgroundTint="#8DC8E8"
         android:text="@string/go_to_loading_area"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -345,8 +345,8 @@
         android:layout_marginStart="32dp"
         android:width="180dp"
         android:height="70dp"
-        android:backgroundTint="#F44336"
-        android:text=" Clear order 1 "
+        android:backgroundTint="#F9423A"
+        android:text="@string/clear_order_1"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -362,8 +362,8 @@
         android:layout_marginStart="32dp"
         android:width="180dp"
         android:height="70dp"
-        android:backgroundTint="#F44336"
-        android:text=" Clear order 2 "
+        android:backgroundTint="#F9423A"
+        android:text="@string/clear_order_2"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -379,8 +379,8 @@
         android:layout_marginStart="32dp"
         android:width="180dp"
         android:height="70dp"
-        android:backgroundTint="#F44336"
-        android:text=" Clear order 3 "
+        android:backgroundTint="#F9423A"
+        android:text="@string/clear_order_3"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -392,7 +392,7 @@
         android:id="@+id/textViewOrder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="@string/order_1_sum"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -436,6 +436,25 @@
         app:layout_constraintTop_toTopOf="@+id/textViewOrder1" />
 
     <TextView
+        android:id="@+id/textViewOrder1Tray2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder1Tray" />
+
+    <TextView
+        android:id="@+id/textViewOrder1Tray3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder1Tray2" />
+
+
+    <TextView
         android:id="@+id/textViewOrder2Tray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -444,6 +463,26 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewOrder2"
         app:layout_constraintStart_toEndOf="@+id/textViewOrder2"
         app:layout_constraintTop_toTopOf="@+id/textViewOrder2" />
+
+    <TextView
+        android:id="@+id/textViewOrder2Tray2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder2Tray" />
+
+
+    <TextView
+        android:id="@+id/textViewOrder2Tray3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder2Tray2" />
+
 
     <TextView
         android:id="@+id/textViewOrder3Tray"
@@ -455,6 +494,24 @@
         app:layout_constraintStart_toEndOf="@+id/textViewOrder3"
         app:layout_constraintTop_toTopOf="@+id/textViewOrder3"
         tools:ignore="VisualLintBounds" />
+
+    <TextView
+        android:id="@+id/textViewOrder3Tray2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder3Tray" />
+
+    <TextView
+        android:id="@+id/textViewOrder3Tray3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="34sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOrder3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrder3Tray2" />
 
     <TextView
         android:id="@+id/textViewOrder1Location"
@@ -493,12 +550,12 @@
         android:layout_marginEnd="4dp"
         android:width="48dp"
         android:height="48dp"
-        android:backgroundTint="#FF0000"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#F9423A"
         android:contentDescription="@string/exit_button"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:adjustViewBounds="true"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
         tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
 
@@ -507,7 +564,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Order History:"
+        android:text="@string/order_history"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -550,7 +607,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
-        android:progressTint="#46DE00"
+        android:progress="50"
+        android:progressTint="#20D199"
         app:layout_constraintBottom_toBottomOf="@+id/imageBattery"
         app:layout_constraintEnd_toEndOf="@+id/imageBattery"
         app:layout_constraintStart_toStartOf="@+id/imageBattery"
@@ -567,7 +625,8 @@
         android:src="@drawable/empty_battery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/empty_battery" />
+        app:srcCompat="@drawable/empty_battery"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imageBatteryCharging"
@@ -580,7 +639,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageBattery"
         app:layout_constraintStart_toStartOf="@+id/imageBattery"
         app:layout_constraintTop_toTopOf="@+id/imageBattery"
-        app:srcCompat="@drawable/bolt_symbol" />
+        app:srcCompat="@drawable/bolt_symbol"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textBatteryLevel"
@@ -605,14 +665,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="Clear order History"
-        android:backgroundTint="#F44336"
+        android:backgroundTint="#F9423A"
+        android:text="@string/clear_order_history"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
-        tools:ignore="VisualLintBounds"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/recyclerViewHistory" />
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewHistory"
+        tools:ignore="VisualLintBounds" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

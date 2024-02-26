@@ -32,4 +32,9 @@
     <string name="no">いいえ</string>
     <string name="exit_app_title">アプリケーションを終了</string>
     <string name="exit_app_message">本当にTemiGO配信サービスDEMOアプリケーションを終了しますか?</string>
+    <string name="clear_order_1">注文 1 をクリア</string>
+    <string name="clear_order_2">注文 2 をクリア</string>
+    <string name="clear_order_3">注文 3 をクリア</string>
+    <string name="order_history">注文履歴:</string>
+    <string name="clear_order_history">注文履歴を消去</string>
 </resources>

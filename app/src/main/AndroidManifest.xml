@@ -37,12 +37,6 @@
         invoke the NlpResponse listener's onNlpResponse method sending it these intents
         -->
         <meta-data
-            android:name="com.robotemi.sdk.metadata.ACTIONS"
-            android:value="home.welcome,                            home.dance,                            home.sleep" />
-        <meta-data
-            android:name="com.robotemi.sdk.metadata.KIOSK"
-            android:value="true" />
-        <meta-data
             android:name="@string/metadata_open_without_internet"
             android:value="true" /> <!-- Set value to true to cover original voice flow[NLU]. -->
         <meta-data
@@ -60,7 +54,6 @@
         <meta-data
             android:name="@string/metadata_permissions"
             android:value="
-            com.robotemi.permission.face_recognition,
             com.robotemi.permission.map,
             com.robotemi.permission.settings" />
 

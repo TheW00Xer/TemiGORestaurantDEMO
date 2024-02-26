@@ -31,4 +31,9 @@
     <string name="no">No</string>
     <string name="exit_app_title">Exit application</string>
     <string name="exit_app_message">Are you sure you want to exit TemiGO Delivery service DEMO application?</string>
+    <string name="clear_order_1"> Clear order 1 </string>
+    <string name="clear_order_2"> Clear order 2 </string>
+    <string name="clear_order_3"> Clear order 3 </string>
+    <string name="order_history">Order History:</string>
+    <string name="clear_order_history">Clear order History</string>
 </resources>
